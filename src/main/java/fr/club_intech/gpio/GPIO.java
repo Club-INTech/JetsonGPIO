@@ -7,8 +7,18 @@ public class GPIO {
     public static boolean DEBUG = true;
 
     public enum Mode {
-        INPUT,
-        OUTPUT;
+        INPUT("in"),
+        OUTPUT("out");
+
+        private String id;
+
+        Mode(String id) {
+            this.id = id;
+        }
+
+        public String id() {
+            return this.id;
+        }
     }
 
     public static Pin open(int number, GPIO.Mode mode) throws IOException {

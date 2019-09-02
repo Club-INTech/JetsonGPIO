@@ -12,7 +12,7 @@ public class Sysfs {
     public static final String VALUE_ENDPOINT = "/value";
 
     public static void setMode(int gpioNumber, GPIO.Mode mode) {
-        safeWrite(GPIO_BASE+gpioNumber+DIRECTION_ENDPOINT, mode.name().toLowerCase());
+        safeWrite(GPIO_BASE+gpioNumber+DIRECTION_ENDPOINT, mode.id());
     }
 
     /**
