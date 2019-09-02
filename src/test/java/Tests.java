@@ -8,7 +8,7 @@ import java.io.IOException;
 public class Tests {
 
     @Test
-    public void test_SetGEN0ToHigh() {
+    public void test_SetGEN0ToHigh() throws IOException {
         try(Pin pin = GPIO.open(Pins.GEN0, GPIO.Mode.OUTPUT)) {
             pin.high();
             try {
@@ -17,7 +17,7 @@ public class Tests {
                 e.printStackTrace();
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            throw e;
         }
     }
 }

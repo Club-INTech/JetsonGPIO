@@ -7,6 +7,19 @@ version '1.0-SNAPSHOT'
 
 sourceCompatibility = 1.8
 
+sourceSets {
+    main {
+        java {
+            srcDir 'src/main/java/'
+        }
+    }
+    test {
+        java {
+            srcDir 'src/test/java/'
+        }
+    }
+}
+
 repositories {
     mavenCentral()
 }
