@@ -57,6 +57,9 @@ public class Sysfs {
      * @return 'true' if the write was successful, 'false' if an error occurred
      */
     private static boolean safeWrite(String path, String message) {
+        if(GPIO.DEBUG) {
+            System.out.println("Writing '"+message+"' to "+path);
+        }
         try(FileOutputStream out = new FileOutputStream(path)) {
             PrintStream printer = new PrintStream(out);
             printer.println(message);

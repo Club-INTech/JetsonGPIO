@@ -4,6 +4,8 @@ import java.io.IOException;
 
 public class GPIO {
 
+    public static boolean DEBUG = true;
+
     public enum Mode {
         INPUT,
         OUTPUT;
