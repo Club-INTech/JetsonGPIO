@@ -17,7 +17,7 @@ public class Tests {
                     pin.low();
                 }
                 try {
-                    Thread.sleep(1000*60);
+                    Thread.sleep(1000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
