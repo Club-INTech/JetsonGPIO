@@ -9,7 +9,7 @@ public class Tests {
 
     @Test
     public void test_SetGEN0ToHigh() throws IOException {
-        try(Pin pin = GPIO.open(Pins.GEN0, GPIO.Mode.OUTPUT)) {
+        try(Pin pin = GPIO.open(Pins.PIN11, GPIO.Mode.OUTPUT)) {
             for (int i = 0; i < 60; i++) {
                 if(i % 2 == 0) {
                     pin.high();

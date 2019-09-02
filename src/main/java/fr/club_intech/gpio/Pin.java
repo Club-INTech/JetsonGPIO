@@ -21,6 +21,10 @@ public class Pin implements Closeable {
         Sysfs.setState(number, false);
     }
 
+    public boolean isHigh() {
+        return Sysfs.isHigh(number);
+    }
+
     public void setMode(GPIO.Mode mode) {
         Sysfs.setMode(number, mode);
     }
