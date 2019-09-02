@@ -8,7 +8,7 @@ import java.io.IOException;
 public class Tests {
 
     @Test
-    public void main(String[] args) {
+    public void test_SetGEN0ToHigh() {
         try(Pin pin = GPIO.open(Pins.GEN0, GPIO.Mode.OUTPUT)) {
             pin.high();
             try {
