@@ -7,7 +7,7 @@ public class Sysfs {
     public static final String EXPORT = CONTROL_INTERFACES + "/export";
     public static final String UNEXPORT = CONTROL_INTERFACES + "/unexport";
 
-    public static final String GPIO_BASE = "/sys/class/gpio/gpio";
+    public static final String GPIO_BASE = CONTROL_INTERFACES + "/gpio";
     public static final String DIRECTION_ENDPOINT = "/direction";
     public static final String VALUE_ENDPOINT = "/value";
 
@@ -21,7 +21,7 @@ public class Sysfs {
      * @return 'true' if the access was granted, 'false' otherwise
      */
     public static boolean export(int gpioNumber) {
-        return safeWrite(CONTROL_INTERFACES+EXPORT, ""+gpioNumber);
+        return safeWrite(EXPORT, ""+gpioNumber);
     }
 
     /**
@@ -29,7 +29,7 @@ public class Sysfs {
      * @param gpioNumber the pin to release
      */
     public static void unexport(int gpioNumber) {
-        safeWrite(CONTROL_INTERFACES+UNEXPORT, ""+gpioNumber);
+        safeWrite(UNEXPORT, ""+gpioNumber);
     }
 
     /**
