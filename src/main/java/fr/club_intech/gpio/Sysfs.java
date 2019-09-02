@@ -1,17 +1,41 @@
+/**
+ * Copyright (c) 2019, INTech.
+ * INTech's JetsonGPIO is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * INTech's JetsonGPIO is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with it.  If not, see <http://www.gnu.org/licenses/>.
+ **/
 package fr.club_intech.gpio;
 
 import java.io.*;
 
-public class Sysfs {
-    public static final String CONTROL_INTERFACES = "/sys/class/gpio";
-    public static final String EXPORT = CONTROL_INTERFACES + "/export";
-    public static final String UNEXPORT = CONTROL_INTERFACES + "/unexport";
+/**
+ * Utility methods to use the filesystem to control the GPIO
+ * @author Xavier "jglrxavpok" Niochaut
+ */
+class Sysfs {
+    private static final String CONTROL_INTERFACES = "/sys/class/gpio";
+    private static final String EXPORT = CONTROL_INTERFACES + "/export";
+    private static final String UNEXPORT = CONTROL_INTERFACES + "/unexport";
 
-    public static final String GPIO_BASE = CONTROL_INTERFACES + "/gpio";
-    public static final String DIRECTION_ENDPOINT = "/direction";
-    public static final String VALUE_ENDPOINT = "/value";
+    private static final String GPIO_BASE = CONTROL_INTERFACES + "/gpio";
+    private static final String DIRECTION_ENDPOINT = "/direction";
+    private static final String VALUE_ENDPOINT = "/value";
 
-    public static void setMode(int gpioNumber, GPIO.Mode mode) {
+    /**
+     * Setups a GPIO pin in a given mode
+     * @param gpioNumber the pin number
+     * @param mode the mode to configure to
+     */
+    static void setMode(int gpioNumber, GPIO.Mode mode) {
         safeWrite(GPIO_BASE+gpioNumber+DIRECTION_ENDPOINT, mode.id());
     }
 
@@ -20,7 +44,7 @@ public class Sysfs {
      * @param gpioNumber the pin to export
      * @return 'true' if the access was granted, 'false' otherwise
      */
-    public static boolean export(int gpioNumber) {
+    static boolean export(int gpioNumber) {
         return safeWrite(EXPORT, ""+gpioNumber);
     }
 
@@ -28,7 +52,7 @@ public class Sysfs {
      * Release access to the given GPIO pin
      * @param gpioNumber the pin to release
      */
-    public static void unexport(int gpioNumber) {
+    static void unexport(int gpioNumber) {
         safeWrite(UNEXPORT, ""+gpioNumber);
     }
 
@@ -37,7 +61,7 @@ public class Sysfs {
      * @param gpioNumber the pin number
      * @return 'true' if the pin is HIGH, 'false' if it is LOW
      */
-    public static boolean isHigh(int gpioNumber) {
+    static boolean isHigh(int gpioNumber) {
         return "1".equals(safeRead(GPIO_BASE+gpioNumber+VALUE_ENDPOINT));
     }
 
@@ -46,7 +70,7 @@ public class Sysfs {
      * @param gpioNumber the gpio to change state of
      * @param active the gpio state
      */
-    public static void setState(int gpioNumber, boolean active) {
+    static void setState(int gpioNumber, boolean active) {
         safeWrite(GPIO_BASE+gpioNumber+VALUE_ENDPOINT, active ? "1" : "0");
     }
 
